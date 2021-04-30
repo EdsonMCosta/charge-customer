@@ -1,6 +1,7 @@
 package com.edson.customer.controllers.dto.response;
 
 import com.edson.customer.dataproviders.models.CustomerAddress;
+import java.io.Serializable;
 import java.util.Objects;
 import lombok.Setter;
 
@@ -11,7 +12,7 @@ import lombok.Setter;
  * @since : 30/04/2021
  **/
 @Setter
-public class CustomerAddressResponseDTO {
+public class CustomerAddressResponseDTO implements Serializable {
 
   private String street;
 
@@ -27,8 +28,7 @@ public class CustomerAddressResponseDTO {
 
   private String state;
 
-  public static CustomerAddressResponseDTO convertFromEntity(
-      final CustomerAddress customerAddress) {
+  public static CustomerAddressResponseDTO convertFromEntity(CustomerAddress customerAddress) {
     final var customerAddressResponseDTO = new CustomerAddressResponseDTO();
 
     customerAddressResponseDTO.setStreet(Objects.requireNonNull(customerAddress.getStreet()));

@@ -1,10 +1,11 @@
 package com.edson.customer.controllers.dto.response;
 
 import com.edson.customer.dataproviders.models.Customer;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
-import lombok.Setter;
+import lombok.Data;
 
 /**
  * CustomerResponseDTO
@@ -12,8 +13,8 @@ import lombok.Setter;
  * @author : Edson Costa
  * @since : 30/04/2021
  **/
-@Setter
-public class CustomerResponseDTO {
+@Data
+public class CustomerResponseDTO implements Serializable {
 
   private String firstName;
 
@@ -33,7 +34,7 @@ public class CustomerResponseDTO {
 
   private CustomerAddressResponseDTO customerAddressResponseDTO;
 
-  public static CustomerResponseDTO convertFromEntity(final Customer customer) {
+  public static CustomerResponseDTO convertFromEntity(Customer customer) {
     final var CustomerResponseDTO = new CustomerResponseDTO();
 
     CustomerResponseDTO.setFirstName(Objects.requireNonNull(customer.getFirstName()));

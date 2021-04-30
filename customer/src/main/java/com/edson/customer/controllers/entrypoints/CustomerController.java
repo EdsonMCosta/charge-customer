@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  **/
 public interface CustomerController {
 
-  ResponseEntity<List<CustomerResponseDTO>> getCustomers();
+  List<CustomerResponseDTO> getCustomers();
 
   ResponseEntity<CustomerResponseDTO> findByDocument(String document);
 

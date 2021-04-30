@@ -8,6 +8,7 @@ import com.edson.customer.controllers.entrypoints.CustomerController;
 import com.edson.customer.services.CustomerService;
 import java.net.URI;
 import java.util.List;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,11 +35,8 @@ public class CustomerControllerImpl implements CustomerController {
 
   @Override
   @GetMapping(value = "/list")
-  public ResponseEntity<List<CustomerResponseDTO>> getCustomers() {
-    final var all = customerService.findAll();
-
-    return ResponseEntity
-        .ok(all);
+  public List<CustomerResponseDTO> getCustomers() {
+    return customerService.findAll();
   }
 
   @Override
@@ -52,7 +50,8 @@ public class CustomerControllerImpl implements CustomerController {
 
   @Override
   @PostMapping(value = "/create", consumes = APPLICATION_JSON_VALUE)
-  public ResponseEntity<Void> createCustomer(@RequestBody CustomerRequestDTO customerRequestDTO) {
+  public ResponseEntity<Void> createCustomer(
+      @RequestBody @Valid final CustomerRequestDTO customerRequestDTO) {
     customerService.saveCustomer(customerRequestDTO);
     final var document = customerRequestDTO.getDocument();
     return ResponseEntity
@@ -63,7 +62,7 @@ public class CustomerControllerImpl implements CustomerController {
   @Override
   @PatchMapping(value = "/update", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<CustomerResponseDTO> updateCustomer(
-      @RequestBody CustomerRequestDTO customerRequestDTO) {
+      @RequestBody @Valid final CustomerRequestDTO customerRequestDTO) {
 
     final var responseDTO = customerService.updateCustomer(customerRequestDTO);
 

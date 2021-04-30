@@ -4,6 +4,7 @@ import com.edson.customer.controllers.dto.request.CustomerRequestDTO;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -51,13 +52,13 @@ public class Customer {
   @Column(name = "description")
   private String description;
 
-  @OneToOne
+  @OneToOne(cascade = CascadeType.PERSIST)
   private CustomerAddress customerAddress;
 
   public Customer() {
   }
 
-  public static Customer convertFromRequest(final CustomerRequestDTO customerRequestDTO) {
+  public static Customer convertFromRequest(CustomerRequestDTO customerRequestDTO) {
     final Customer customer = new Customer();
 
     customer.setFirstName(Objects.requireNonNull(customerRequestDTO.getFirstName()));

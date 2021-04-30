@@ -34,8 +34,7 @@ public class CustomerAddressRequestDTO {
   @NotBlank(message = "State should be informed.")
   private String state;
 
-  public static CustomerAddressRequestDTO convertFromEntity(
-      final CustomerAddress customerAddress) {
+  public static CustomerAddressRequestDTO convertFromEntity(CustomerAddress customerAddress) {
     final var customerAddressRequestDTO = new CustomerAddressRequestDTO();
 
     customerAddressRequestDTO.setStreet(Objects.requireNonNull(customerAddress.getStreet()));
