@@ -13,9 +13,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,8 +35,9 @@ public class CustomerControllerImpl implements CustomerController {
 
   @Override
   @GetMapping(value = "/list")
-  public List<CustomerResponseDTO> getCustomers() {
-    return customerService.findAll();
+  public ResponseEntity<List<CustomerResponseDTO>> getCustomers() {
+    final var allCustomers = customerService.findAll();
+    return ResponseEntity.ok(allCustomers);
   }
 
   @Override
@@ -60,7 +61,7 @@ public class CustomerControllerImpl implements CustomerController {
   }
 
   @Override
-  @PatchMapping(value = "/update", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+  @PutMapping(value = "/update", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<CustomerResponseDTO> updateCustomer(
       @RequestBody @Valid final CustomerRequestDTO customerRequestDTO) {
 
@@ -72,7 +73,7 @@ public class CustomerControllerImpl implements CustomerController {
 
   @Override
   @DeleteMapping(value = "/delete/{document}")
-  public ResponseEntity<Void> deleteCustomer(String document) {
+  public ResponseEntity<Void> deleteCustomer(@PathVariable String document) {
     customerService.deleteCustomer(document);
     return ResponseEntity
         .noContent()

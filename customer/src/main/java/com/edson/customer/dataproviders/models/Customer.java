@@ -7,9 +7,11 @@ import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import lombok.Data;
 
@@ -52,7 +54,9 @@ public class Customer {
   @Column(name = "description")
   private String description;
 
-  @OneToOne(cascade = CascadeType.PERSIST)
+  @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+      CascadeType.REMOVE}, fetch = FetchType.EAGER, orphanRemoval = true)
+  @JoinColumn(name = "customer_address_id")
   private CustomerAddress customerAddress;
 
   public Customer() {

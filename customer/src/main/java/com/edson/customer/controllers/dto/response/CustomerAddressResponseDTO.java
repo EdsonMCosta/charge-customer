@@ -3,7 +3,7 @@ package com.edson.customer.controllers.dto.response;
 import com.edson.customer.dataproviders.models.CustomerAddress;
 import java.io.Serializable;
 import java.util.Objects;
-import lombok.Setter;
+import lombok.Data;
 
 /**
  * CustomerAddressResponseDTO
@@ -11,7 +11,7 @@ import lombok.Setter;
  * @author : Edson Costa
  * @since : 30/04/2021
  **/
-@Setter
+@Data
 public class CustomerAddressResponseDTO implements Serializable {
 
   private String street;

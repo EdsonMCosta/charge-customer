@@ -4,9 +4,13 @@ import com.edson.customer.controllers.dto.request.CustomerAddressRequestDTO;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 import lombok.Data;
 
 /**
@@ -33,7 +37,7 @@ public class CustomerAddress {
   @Column(name = "complement")
   private String complement;
 
-  @Column(name = "postalCode", nullable = false)
+  @Column(name = "postal_code", nullable = false)
   private String postalCode;
 
   @Column(name = "neighborhood", nullable = false)
