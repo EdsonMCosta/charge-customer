@@ -1,4 +1,4 @@
-package com.edson.customer.dataproviders.entities;
+package com.edson.customer.dataproviders.models;
 
 import com.edson.customer.controllers.dto.request.CustomerAddressRequestDTO;
 import java.util.Objects;
@@ -22,7 +22,7 @@ public class CustomerAddress {
   @Id
   @Column(name = "customer_address_id")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private String customerAddressId;
+  private Long customerAddressId;
 
   @Column(name = "street", nullable = false)
   private String street;

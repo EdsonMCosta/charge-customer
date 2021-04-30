@@ -1,0 +1,24 @@
+spring:
+  # Database
+  datasource:
+    url: jdbc:mysql://localhost:3306/customers_db?serverTimezone=America/Sao_Paulo&useLegacyDatetimeCode=false&autoReconnect=true&useSSL=false
+    username: root
+    password: root1234
+
+    # Default connection pool
+    hiraki:
+      connectionTimeout: 20000
+      maximumPoolsize: 5
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+
+#  Application Port
+server:
+  port: 8080
+

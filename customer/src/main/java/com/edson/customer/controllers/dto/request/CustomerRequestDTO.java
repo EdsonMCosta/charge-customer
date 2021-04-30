@@ -1,6 +1,6 @@
 package com.edson.customer.controllers.dto.request;
 
-import com.edson.customer.dataproviders.entities.Customer;
+import com.edson.customer.dataproviders.models.Customer;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;

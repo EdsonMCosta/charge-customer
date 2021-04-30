@@ -1,4 +1,4 @@
-package com.edson.customer.dataproviders.entities;
+package com.edson.customer.dataproviders.models;
 
 import com.edson.customer.controllers.dto.request.CustomerRequestDTO;
 import java.math.BigDecimal;
@@ -25,7 +25,7 @@ public class Customer {
   @Id
   @Column(name = "customer_id")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private String customerId;
+  private Long customerId;
 
   @Column(name = "first_name", nullable = false)
   private String firstName;

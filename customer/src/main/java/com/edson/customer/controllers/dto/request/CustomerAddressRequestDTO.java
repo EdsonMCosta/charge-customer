@@ -1,6 +1,6 @@
 package com.edson.customer.controllers.dto.request;
 
-import com.edson.customer.dataproviders.entities.CustomerAddress;
+import com.edson.customer.dataproviders.models.CustomerAddress;
 import java.util.Objects;
 import javax.validation.constraints.NotBlank;
 import lombok.Data;
