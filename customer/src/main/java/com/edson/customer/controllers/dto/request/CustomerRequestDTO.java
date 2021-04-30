@@ -1,6 +1,7 @@
 package com.edson.customer.controllers.dto.request;
 
 import com.edson.customer.dataproviders.models.Customer;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -40,6 +41,7 @@ public class CustomerRequestDTO {
   private String description;
 
   @NotBlank(message = "Complete address should be informed.")
+  @JsonProperty(value = "address")
   private CustomerAddressRequestDTO customerAddressRequestDTO;
 
   public static CustomerRequestDTO convertFromEntity(final Customer customer) {
