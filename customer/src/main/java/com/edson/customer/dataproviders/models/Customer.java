@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import lombok.Data;
 
 /**
@@ -22,7 +23,8 @@ import lombok.Data;
  * @since : 29/04/2021
  **/
 @Data
-@Entity(name = "customers")
+@Entity(name = "customer")
+@Table(name = "customers")
 public class Customer {
 
   @Id

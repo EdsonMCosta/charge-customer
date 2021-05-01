@@ -11,11 +11,10 @@ spring:
       maximumPoolsize: 5
 
   jpa:
-    hibernate:
-      ddl-auto: create
     properties:
       hibernate:
         format_sql: true
+        default_schema: customers_db
 
 #  Application Port
 server:
