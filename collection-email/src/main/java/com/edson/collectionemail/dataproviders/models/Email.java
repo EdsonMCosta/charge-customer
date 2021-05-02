@@ -1,5 +1,6 @@
 package com.edson.collectionemail.dataproviders.models;
 
+import com.edson.collectionemail.controllers.dtos.EmailDTO;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -161,5 +162,19 @@ public class Email {
         ", debitStartDate=" + debitStartDate +
         ", description='" + description + '\'' +
         '}';
+  }
+
+  public static Email convertFromDTO(EmailDTO emailDTO) {
+    final var email = new Email();
+
+    email.setEmailCustomer(emailDTO.getEmailCustomer());
+    email.setFirstNameCustomer(emailDTO.getFirstNameCustomer());
+    email.setLastNameCustomer(emailDTO.getLastNameCustomer());
+    email.setDocumentCustomer(emailDTO.getDocumentCustomer());
+    email.setTotalDebitValue(emailDTO.getTotalDebitValue());
+    email.setDebitStartDate(emailDTO.getDebitStartDate());
+    email.setDescription(emailDTO.getDescription());
+
+    return email;
   }
 }
