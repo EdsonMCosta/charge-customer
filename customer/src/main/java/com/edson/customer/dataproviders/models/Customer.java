@@ -47,10 +47,10 @@ public class Customer {
   @Column(name = "email", nullable = false)
   private String email;
 
-  @Column(name = "total_debt", nullable = false)
+  @Column(name = "total_debt_value", nullable = false)
   private BigDecimal totalDebtValue;
 
-  @Column(name = "debit_start_at", nullable = false)
+  @Column(name = "debit_start_date", nullable = false)
   private LocalDate debitStartDate;
 
   @Column(name = "description")
