@@ -4,10 +4,6 @@ import com.edson.customer.controllers.dto.request.CustomerRequestDTO;
 import com.edson.customer.controllers.dto.response.CustomerResponseDTO;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * CustomerController
@@ -17,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  **/
 public interface CustomerController {
 
-  ResponseEntity<List<CustomerResponseDTO>> getCustomers();
+  ResponseEntity<List<CustomerResponseDTO>> getAllCustomers();
 
   ResponseEntity<CustomerResponseDTO> findByDocument(String document);
 

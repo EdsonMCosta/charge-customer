@@ -34,14 +34,15 @@ public class CustomerControllerImpl implements CustomerController {
   private final CustomerService customerService;
 
   @Override
-  @GetMapping(value = "/list")
-  public ResponseEntity<List<CustomerResponseDTO>> getCustomers() {
+  @GetMapping(value = "/list", produces = APPLICATION_JSON_VALUE)
+  public ResponseEntity<List<CustomerResponseDTO>> getAllCustomers() {
     final var allCustomers = customerService.findAll();
-    return ResponseEntity.ok(allCustomers);
+    return ResponseEntity
+        .ok(allCustomers);
   }
 
   @Override
-  @GetMapping(value = "/{document}")
+  @GetMapping(value = "/{document}", produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<CustomerResponseDTO> findByDocument(@PathVariable String document) {
     final var byDocument = customerService.findByDocument(document);
 
