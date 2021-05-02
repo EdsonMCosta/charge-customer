@@ -82,6 +82,11 @@
 			<version>2.0.2</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.edson</groupId>
+			<artifactId>charging-customer</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 	<build>
