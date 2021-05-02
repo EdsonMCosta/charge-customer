@@ -1,0 +1,25 @@
+spring:
+  # Database
+  datasource:
+    url: jdbc:mysql://localhost:3306/collection_emails_db?serverTimezone=America/Sao_Paulo&useLegacyDatetimeCode=false&autoReconnect=true&useSSL=false
+    username: root
+    password: root1234
+
+    # Default connection pool
+    hiraki:
+      connectionTimeout: 20000
+      maximumPoolsize: 5
+
+  jpa:s
+    properties:
+      hibernate:
+        format_sql: true
+        default_schema: collection_emails_db
+
+#  Application Port
+server:
+  port: 8081
+
+  # Context path
+  servlet:
+    context-path: /api

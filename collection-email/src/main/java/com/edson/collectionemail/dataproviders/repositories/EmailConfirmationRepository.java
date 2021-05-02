@@ -1,7 +1,16 @@
-package com.edson.collectionemail.dataproviders.repositories;/**
+package com.edson.collectionemail.dataproviders.repositories;
+
+import com.edson.collectionemail.dataproviders.models.EmailConfirmation;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+/**
  * EmailConfirmationRepository
  *
- * @author : Edson Costa 
+ * @author : Edson Costa
  * @since : 01/05/2021
- **/public interface EmailConfirmationRepository {
+ **/
+@Repository
+public interface EmailConfirmationRepository extends JpaRepository<EmailConfirmation, Integer> {
+
 }
