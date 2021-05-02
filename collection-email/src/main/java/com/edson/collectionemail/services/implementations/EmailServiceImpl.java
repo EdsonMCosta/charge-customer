@@ -1,9 +1,13 @@
 package com.edson.collectionemail.services.implementations;
 
 import com.edson.collectionemail.controllers.dtos.EmailDTO;
+import com.edson.collectionemail.controllers.dtos.EmailSenderDTO;
 import com.edson.collectionemail.dataproviders.models.Email;
 import com.edson.collectionemail.dataproviders.repositories.EmailRepository;
+import com.edson.collectionemail.services.EmailSenderService;
 import com.edson.collectionemail.services.EmailService;
+import com.edson.collectionemail.usecase.implementations.PrepareBodyMailUseCase;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
@@ -21,6 +25,12 @@ public class EmailServiceImpl implements EmailService {
 
   @Autowired
   private EmailRepository emailRepository;
+
+  @Autowired
+  private EmailSenderService emailSenderService;
+
+  @Autowired
+  private PrepareBodyMailUseCase prepareBodyMailUseCase;
 
   @Override
   public List<EmailDTO> findAll() {
@@ -47,6 +57,8 @@ public class EmailServiceImpl implements EmailService {
     final var email = Email.convertFromDTO(emailDTO);
 
     emailRepository.save(email);
+
+    this.sendEmailToCustomer(emailDTO);
   }
 
   @Override
@@ -56,6 +68,16 @@ public class EmailServiceImpl implements EmailService {
         .orElseThrow(() -> new EmailNotFoundException("Email not found."));
 
     emailRepository.delete(byId);
+  }
+
+  @Override
+  public void sendEmailToCustomer(EmailDTO emailDTO) {
+    final var emailSenderDTO = new EmailSenderDTO(
+        Collections.singletonList(emailDTO.getEmailCustomer()),
+        prepareBodyMailUseCase.prepareBodyMessage(
+            emailDTO.getDocumentCustomer()));
+
+    emailSenderService.sendEmailToCustomer(emailSenderDTO, emailDTO);
   }
 
 

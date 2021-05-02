@@ -19,4 +19,6 @@ public interface EmailService {
 
   void deleteEmail(Integer id);
 
+  void sendEmailToCustomer(EmailDTO emailDTO);
+
 }

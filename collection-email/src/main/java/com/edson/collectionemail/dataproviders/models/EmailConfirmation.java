@@ -57,7 +57,7 @@ public class EmailConfirmation {
     return email;
   }
 
-  public void setEmail(Email email) {
+  public void   setEmail(Email email) {
     this.email = email;
   }
 
