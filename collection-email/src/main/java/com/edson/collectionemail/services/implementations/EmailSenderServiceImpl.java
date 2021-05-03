@@ -8,6 +8,7 @@ import com.edson.collectionemail.controllers.dtos.EmailResultDTO;
 import com.edson.collectionemail.controllers.dtos.EmailSenderDTO;
 import com.edson.collectionemail.dataproviders.models.Email;
 import com.edson.collectionemail.dataproviders.models.EmailConfirmation;
+import com.edson.collectionemail.services.CustomerService;
 import com.edson.collectionemail.services.EmailSenderService;
 import com.edson.collectionemail.usecase.implementations.PrepareBodyMailUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,14 @@ public class EmailSenderServiceImpl implements EmailSenderService {
   @Autowired
   private JavaMailSender javaMailSender;
 
+  @Autowired
+  private CustomerService customerService;
+
   public EmailResultDTO sendEmailToCustomer(EmailSenderDTO emailSenderDTO, EmailDTO emailDTO) {
+
+    final var customerByDocument = customerService
+        .getCustomerByDocument(emailDTO.getDocumentCustomer());
+
     try {
       final var mailMessage = new SimpleMailMessage();
 
@@ -38,7 +46,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
       mailMessage.setTo(emailDTO.getEmailCustomer());
       mailMessage.setSubject(MAIL_SUBJECT);
       mailMessage.setText(prepareBodyMailUseCase
-          .prepareBodyMessage(emailDTO.getDocumentCustomer()));
+          .prepareBodyMessage(customerByDocument.getDocument()));
 
       javaMailSender.send(mailMessage);
 
