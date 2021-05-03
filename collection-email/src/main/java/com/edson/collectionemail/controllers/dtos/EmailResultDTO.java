@@ -1,5 +1,6 @@
 package com.edson.collectionemail.controllers.dtos;
 
+import java.io.Serializable;
 import lombok.Value;
 
 /**
@@ -9,7 +10,7 @@ import lombok.Value;
  * @since : 02/05/2021
  **/
 @Value
-public class EmailResultDTO {
+public class EmailResultDTO implements Serializable {
 
   Boolean success;
   String message;

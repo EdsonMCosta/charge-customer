@@ -15,8 +15,10 @@
   <name>collection-email</name>
   <description>Project to simulate a charging process</description>
   <properties>
-    <java.version>11</java.version>
+    <java.version>8</java.version>
     <docker.image.prefix>renegotiation/</docker.image.prefix>
+    <maven.compiler.source>8</maven.compiler.source>
+    <maven.compiler.target>8</maven.compiler.target>
   </properties>
   <dependencies>
     <dependency>

@@ -35,7 +35,7 @@ public class EmailControllerImpl implements EmailController {
   @Override
   @GetMapping(value = "/list", produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<List<EmailDTO>> getAllEmails() {
-    final var all = emailService.findAll();
+    final List<EmailDTO> all = emailService.findAll();
     return ResponseEntity
         .ok(all);
   }
@@ -43,7 +43,7 @@ public class EmailControllerImpl implements EmailController {
   @Override
   @GetMapping(value = "/list/{document}", produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<EmailDTO> findByDocumentCustomer(@PathVariable String documentCustomer) {
-    final var byDocumentCustomer = emailService.findByDocumentCustomer(documentCustomer);
+    final EmailDTO byDocumentCustomer = emailService.findByDocumentCustomer(documentCustomer);
 
     return ResponseEntity
         .ok(byDocumentCustomer);
@@ -53,7 +53,7 @@ public class EmailControllerImpl implements EmailController {
   @PostMapping(value = "/save", consumes = APPLICATION_JSON_VALUE)
   public ResponseEntity<Void> createEmail(@RequestBody @Valid EmailDTO emailDTO) {
     emailService.saveEmail(emailDTO);
-    final var emailCustomer = emailDTO.getEmailCustomer();
+    final String emailCustomer = emailDTO.getEmailCustomer();
     return ResponseEntity
         .created(URI.create(emailCustomer))
         .build();

@@ -12,7 +12,7 @@ import com.edson.collectionemail.dataproviders.models.Email;
 public class DTOConverter {
 
   public static EmailDTO convertFromEntity(Email email) {
-    final var emailDTO = new EmailDTO();
+    final EmailDTO emailDTO = new EmailDTO();
 
     emailDTO.setEmailCustomer(email.getEmailCustomer());
     emailDTO.setFirstNameCustomer(email.getFirstNameCustomer());

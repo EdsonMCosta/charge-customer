@@ -34,7 +34,7 @@ public class EmailServiceImpl implements EmailService {
 
   @Override
   public List<EmailDTO> findAll() {
-    final var emails = emailRepository.findAll();
+    final List<Email> emails = emailRepository.findAll();
 
     return emails
         .stream()
@@ -44,7 +44,7 @@ public class EmailServiceImpl implements EmailService {
 
   @Override
   public EmailDTO findByDocumentCustomer(String documentCustomer) {
-    final var email = emailRepository
+    final Email email = emailRepository
         .findByDocumentCustomer(documentCustomer)
         .orElseThrow(() -> new EmailNotFoundException("Email not found."));
 
@@ -54,7 +54,7 @@ public class EmailServiceImpl implements EmailService {
   @Override
   @Transactional(rollbackOn = Exception.class)
   public void saveEmail(EmailDTO emailDTO) {
-    final var email = Email.convertFromDTO(emailDTO);
+    final Email email = Email.convertFromDTO(emailDTO);
 
     emailRepository.save(email);
 
@@ -64,7 +64,7 @@ public class EmailServiceImpl implements EmailService {
   @Override
   @Transactional(rollbackOn = Exception.class)
   public void deleteEmail(Integer id) {
-    final var byId = emailRepository.findById(id)
+    final Email byId = emailRepository.findById(id)
         .orElseThrow(() -> new EmailNotFoundException("Email not found."));
 
     emailRepository.delete(byId);
@@ -72,7 +72,7 @@ public class EmailServiceImpl implements EmailService {
 
   @Override
   public void sendEmailToCustomer(EmailDTO emailDTO) {
-    final var emailSenderDTO = new EmailSenderDTO(
+    final EmailSenderDTO emailSenderDTO = new EmailSenderDTO(
         Collections.singletonList(emailDTO.getEmailCustomer()),
         prepareBodyMailUseCase.prepareBodyMessage(
             emailDTO.getDocumentCustomer()));

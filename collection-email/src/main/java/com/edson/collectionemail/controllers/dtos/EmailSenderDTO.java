@@ -1,6 +1,7 @@
 package com.edson.collectionemail.controllers.dtos;
 
 import com.edson.collectionemail.dataproviders.models.Email;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -9,7 +10,7 @@ import java.util.List;
  * @author : Edson Costa
  * @since : 02/05/2021
  **/
-public class EmailSenderDTO {
+public class EmailSenderDTO implements Serializable {
 
   public static final String MAIL_SUBJECT = "Comunicado de Renegociação!";
 

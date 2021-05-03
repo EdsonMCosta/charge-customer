@@ -1,5 +1,6 @@
 package com.edson.collectionemail.services.implementations;
 
+import com.edson.collectionemail.controllers.dtos.CustomerResponseDTO;
 import com.edson.collectionemail.services.CustomerService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;

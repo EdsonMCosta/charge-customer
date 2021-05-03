@@ -165,7 +165,7 @@ public class Email {
   }
 
   public static Email convertFromDTO(EmailDTO emailDTO) {
-    final var email = new Email();
+    final Email email = new Email();
 
     email.setEmailCustomer(emailDTO.getEmailCustomer());
     email.setFirstNameCustomer(emailDTO.getFirstNameCustomer());

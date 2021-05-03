@@ -3,6 +3,7 @@ package com.edson.collectionemail.services.implementations;
 import static com.edson.collectionemail.controllers.dtos.EmailSenderDTO.MAIL_SUBJECT;
 import static com.edson.collectionemail.controllers.dtos.EmailSenderDTO.SENDER;
 
+import com.edson.collectionemail.controllers.dtos.CustomerResponseDTO;
 import com.edson.collectionemail.controllers.dtos.EmailDTO;
 import com.edson.collectionemail.controllers.dtos.EmailResultDTO;
 import com.edson.collectionemail.controllers.dtos.EmailSenderDTO;
@@ -36,11 +37,11 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 
   public EmailResultDTO sendEmailToCustomer(EmailSenderDTO emailSenderDTO, EmailDTO emailDTO) {
 
-    final var customerByDocument = customerService
+    final CustomerResponseDTO customerByDocument = customerService
         .getCustomerByDocument(emailDTO.getDocumentCustomer());
 
     try {
-      final var mailMessage = new SimpleMailMessage();
+      final SimpleMailMessage mailMessage = new SimpleMailMessage();
 
       mailMessage.setFrom(SENDER);
       mailMessage.setTo(emailDTO.getEmailCustomer());
@@ -50,13 +51,13 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 
       javaMailSender.send(mailMessage);
 
-      final var emailConfirmation = new EmailConfirmation();
+      final EmailConfirmation emailConfirmation = new EmailConfirmation();
       emailConfirmation.setEmail(Email.convertFromDTO(emailDTO));
       emailConfirmation.setWasSent(Boolean.TRUE);
 
       return EmailResultDTO.of(Boolean.TRUE, "Success sent");
     } catch (RuntimeException e) {
-      final var emailConfirmation = new EmailConfirmation();
+      final EmailConfirmation emailConfirmation = new EmailConfirmation();
       emailConfirmation.setEmail(Email.convertFromDTO(emailDTO));
       emailConfirmation.setWasSent(Boolean.FALSE);
 

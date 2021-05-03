@@ -1,5 +1,7 @@
 package com.edson.collectionemail.services;
 
+import com.edson.collectionemail.controllers.dtos.CustomerResponseDTO;
+
 /**
  * UserService
  *

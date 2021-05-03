@@ -1,6 +1,7 @@
 package com.edson.collectionemail.controllers.dtos;
 
 import com.edson.collectionemail.dataproviders.models.Email;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import javax.validation.constraints.NotBlank;
@@ -12,7 +13,7 @@ import javax.validation.constraints.NotNull;
  * @author : Edson Costa
  * @since : 02/05/2021
  **/
-public class EmailDTO {
+public class EmailDTO implements Serializable {
 
   @NotBlank
   private String emailCustomer;
@@ -92,7 +93,7 @@ public class EmailDTO {
   }
 
   public static EmailDTO convertFromEntity(Email email) {
-    final var emailDTO = new EmailDTO();
+    final EmailDTO emailDTO = new EmailDTO();
 
     emailDTO.setEmailCustomer(email.getEmailCustomer());
     emailDTO.setFirstNameCustomer(email.getFirstNameCustomer());
