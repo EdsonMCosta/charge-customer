@@ -1,4 +1,4 @@
-package com.edson.customer.controllers.dto.request;
+package com.edson.chargingcustomer.dto;
 
 import com.edson.customer.dataproviders.models.CustomerAddress;
 import java.util.Objects;

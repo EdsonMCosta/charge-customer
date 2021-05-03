@@ -1,4 +1,4 @@
-package com.edson.customer.controllers.dto.response;
+package com.edson.chargingcustomer.dto;
 
 import com.edson.customer.dataproviders.models.Customer;
 import java.io.Serializable;

@@ -1,4 +1,4 @@
-package com.edson.customer.controllers.dto.request;
+package com.edson.chargingcustomer.dto;
 
 import com.edson.customer.dataproviders.models.Customer;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -57,7 +57,7 @@ public class CustomerRequestDTO {
 
   @NotBlank(message = "Complete address should be informed.")
   @JsonProperty(value = "address")
-  private CustomerAddressRequestDTO customerAddressRequestDTO;
+  private com.edson.customer.controllers.dto.request.CustomerAddressRequestDTO customerAddressRequestDTO;
 
   public static CustomerRequestDTO convertFromEntity(Customer customer) {
     final var customerRequestDTO = new CustomerRequestDTO();
@@ -72,7 +72,7 @@ public class CustomerRequestDTO {
     customerRequestDTO.setDescription(customer.getDescription());
     customerRequestDTO.setCustomerAddressRequestDTO(
         Objects.requireNonNull(
-            CustomerAddressRequestDTO.convertFromEntity(customer.getCustomerAddress())));
+            com.edson.customer.controllers.dto.request.CustomerAddressRequestDTO.convertFromEntity(customer.getCustomerAddress())));
 
     return customerRequestDTO;
   }

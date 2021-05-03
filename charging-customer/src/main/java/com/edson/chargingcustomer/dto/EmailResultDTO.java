@@ -1,4 +1,4 @@
-package com.edson.collectionemail.controllers.dtos;
+package com.edson.chargingcustomer.dto;
 
 import lombok.Value;
 
