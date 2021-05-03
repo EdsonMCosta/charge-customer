@@ -17,7 +17,7 @@ import java.util.Objects;
 public class DTOConverter {
 
   public static CustomerAddressRequestDTO convertFromEntity(CustomerAddress customerAddress) {
-    final var customerAddressRequestDTO = new CustomerAddressRequestDTO();
+    final CustomerAddressRequestDTO customerAddressRequestDTO = new CustomerAddressRequestDTO();
 
     customerAddressRequestDTO.setStreet(Objects.requireNonNull(customerAddress.getStreet()));
     customerAddressRequestDTO.setNumber(Objects.requireNonNull(customerAddress.getNumber()));
@@ -34,7 +34,7 @@ public class DTOConverter {
   }
 
   public static CustomerRequestDTO convertFromEntity(Customer customer) {
-    final var customerRequestDTO = new CustomerRequestDTO();
+    final CustomerRequestDTO customerRequestDTO = new CustomerRequestDTO();
 
     customerRequestDTO.setFirstName(Objects.requireNonNull(customer.getFirstName()));
     customerRequestDTO.setLastName(Objects.requireNonNull(customer.getLastName()));
@@ -51,8 +51,9 @@ public class DTOConverter {
     return customerRequestDTO;
   }
 
-  public static CustomerAddressResponseDTO convertResponseFromEntity(CustomerAddress customerAddress) {
-    final var customerAddressResponseDTO = new CustomerAddressResponseDTO();
+  public static CustomerAddressResponseDTO convertResponseFromEntity(
+      CustomerAddress customerAddress) {
+    final CustomerAddressResponseDTO customerAddressResponseDTO = new CustomerAddressResponseDTO();
 
     customerAddressResponseDTO.setStreet(Objects.requireNonNull(customerAddress.getStreet()));
     customerAddressResponseDTO.setNumber(Objects.requireNonNull(customerAddress.getNumber()));
@@ -69,7 +70,7 @@ public class DTOConverter {
   }
 
   public static CustomerResponseDTO convertResponseFromEntity(Customer customer) {
-    final var CustomerResponseDTO = new CustomerResponseDTO();
+    final CustomerResponseDTO CustomerResponseDTO = new CustomerResponseDTO();
 
     CustomerResponseDTO.setFirstName(Objects.requireNonNull(customer.getFirstName()));
     CustomerResponseDTO.setLastName(Objects.requireNonNull(customer.getLastName()));

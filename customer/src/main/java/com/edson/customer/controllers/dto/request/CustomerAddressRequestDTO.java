@@ -35,7 +35,7 @@ public class CustomerAddressRequestDTO {
   private String state;
 
   public static CustomerAddressRequestDTO convertFromEntity(CustomerAddress customerAddress) {
-    final var customerAddressRequestDTO = new CustomerAddressRequestDTO();
+    final CustomerAddressRequestDTO customerAddressRequestDTO = new CustomerAddressRequestDTO();
 
     customerAddressRequestDTO.setStreet(Objects.requireNonNull(customerAddress.getStreet()));
     customerAddressRequestDTO.setNumber(Objects.requireNonNull(customerAddress.getNumber()));

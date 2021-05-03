@@ -60,7 +60,7 @@ public class CustomerRequestDTO {
   private CustomerAddressRequestDTO customerAddressRequestDTO;
 
   public static CustomerRequestDTO convertFromEntity(Customer customer) {
-    final var customerRequestDTO = new CustomerRequestDTO();
+    final CustomerRequestDTO customerRequestDTO = new CustomerRequestDTO();
 
     customerRequestDTO.setFirstName(Objects.requireNonNull(customer.getFirstName()));
     customerRequestDTO.setLastName(Objects.requireNonNull(customer.getLastName()));

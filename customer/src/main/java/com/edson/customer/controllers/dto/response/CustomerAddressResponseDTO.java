@@ -29,7 +29,7 @@ public class CustomerAddressResponseDTO implements Serializable {
   private String state;
 
   public static CustomerAddressResponseDTO convertFromEntity(CustomerAddress customerAddress) {
-    final var customerAddressResponseDTO = new CustomerAddressResponseDTO();
+    final CustomerAddressResponseDTO customerAddressResponseDTO = new CustomerAddressResponseDTO();
 
     customerAddressResponseDTO.setStreet(Objects.requireNonNull(customerAddress.getStreet()));
     customerAddressResponseDTO.setNumber(Objects.requireNonNull(customerAddress.getNumber()));

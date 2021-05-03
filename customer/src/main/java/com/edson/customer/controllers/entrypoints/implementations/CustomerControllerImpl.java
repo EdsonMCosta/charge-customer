@@ -36,7 +36,7 @@ public class CustomerControllerImpl implements CustomerController {
   @Override
   @GetMapping(value = "/list", produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<List<CustomerResponseDTO>> getAllCustomers() {
-    final var allCustomers = customerService.findAll();
+    final List<CustomerResponseDTO> allCustomers = customerService.findAll();
     return ResponseEntity
         .ok(allCustomers);
   }
@@ -44,7 +44,7 @@ public class CustomerControllerImpl implements CustomerController {
   @Override
   @GetMapping(value = "/{document}", produces = APPLICATION_JSON_VALUE)
   public ResponseEntity<CustomerResponseDTO> findByDocument(@PathVariable String document) {
-    final var byDocument = customerService.findByDocument(document);
+    final CustomerResponseDTO byDocument = customerService.findByDocument(document);
 
     return ResponseEntity
         .ok(byDocument);
@@ -55,7 +55,7 @@ public class CustomerControllerImpl implements CustomerController {
   public ResponseEntity<Void> createCustomer(
       @RequestBody @Valid final CustomerRequestDTO customerRequestDTO) {
     customerService.saveCustomer(customerRequestDTO);
-    final var document = customerRequestDTO.getDocument();
+    final String document = customerRequestDTO.getDocument();
     return ResponseEntity
         .created(URI.create(document))
         .build();
@@ -66,7 +66,8 @@ public class CustomerControllerImpl implements CustomerController {
   public ResponseEntity<CustomerResponseDTO> updateCustomer(
       @RequestBody @Valid final CustomerRequestDTO customerRequestDTO) {
 
-    final var responseDTO = customerService.updateCustomer(customerRequestDTO);
+    final CustomerResponseDTO responseDTO = customerService
+        .updateCustomer(customerRequestDTO);
 
     return ResponseEntity
         .ok(responseDTO);

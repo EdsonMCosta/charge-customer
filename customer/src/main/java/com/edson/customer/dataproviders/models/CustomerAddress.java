@@ -52,7 +52,7 @@ public class CustomerAddress {
 
   public static CustomerAddress convertFromRequest(
       final CustomerAddressRequestDTO customerAddressRequestDTO) {
-    final var customerAddress = new CustomerAddress();
+    final CustomerAddress customerAddress = new CustomerAddress();
 
     customerAddress.setStreet(Objects.requireNonNull(customerAddressRequestDTO.getStreet()));
     customerAddress.setNumber(Objects.requireNonNull(customerAddressRequestDTO.getNumber()));

@@ -26,7 +26,7 @@ public class CustomerServiceImpl implements CustomerService {
 
   @Override
   public List<CustomerResponseDTO> findAll() {
-    final var customers = customerRepository.findAll();
+    final List<Customer> customers = customerRepository.findAll();
     return customers
         .stream()
         .map(CustomerResponseDTO::convertFromEntity)
@@ -35,7 +35,7 @@ public class CustomerServiceImpl implements CustomerService {
 
   @Override
   public CustomerResponseDTO findByDocument(final String document) {
-    final var byDocument = customerRepository.findByDocument(document)
+    final Customer byDocument = customerRepository.findByDocument(document)
         .orElseThrow(() -> new CustomerNotFoundException("Customer not found."));
 
     return CustomerResponseDTO.convertFromEntity(byDocument);
@@ -44,7 +44,7 @@ public class CustomerServiceImpl implements CustomerService {
   @Override
   @Transactional(rollbackOn = Exception.class)
   public CustomerResponseDTO updateCustomer(CustomerRequestDTO customerRequestDTO) {
-    final var customer = customerRepository
+    final Customer customer = customerRepository
         .findByDocument(customerRequestDTO.getDocument())
         .orElseThrow(() -> new CustomerNotFoundException("Customer not found."));
 
@@ -64,7 +64,7 @@ public class CustomerServiceImpl implements CustomerService {
 
   @Transactional(rollbackOn = Exception.class)
   public void saveCustomer(final CustomerRequestDTO customerRequestDTO) {
-    final var customer = Customer.convertFromRequest(customerRequestDTO);
+    final Customer customer = Customer.convertFromRequest(customerRequestDTO);
 
     customerRepository.save(customer);
   }
@@ -72,7 +72,7 @@ public class CustomerServiceImpl implements CustomerService {
   @Override
   @Transactional(rollbackOn = Exception.class)
   public void deleteCustomer(final String document) {
-    final var customer = customerRepository.findByDocument(document)
+    final Customer customer = customerRepository.findByDocument(document)
         .orElseThrow(() -> new CustomerNotFoundException("Customer not found."));
 
     customerRepository.delete(customer);

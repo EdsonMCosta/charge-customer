@@ -35,21 +35,21 @@ public class CustomerResponseDTO implements Serializable {
   private CustomerAddressResponseDTO customerAddressResponseDTO;
 
   public static CustomerResponseDTO convertFromEntity(Customer customer) {
-    final var CustomerResponseDTO = new CustomerResponseDTO();
+    final CustomerResponseDTO customerResponseDTO = new CustomerResponseDTO();
 
-    CustomerResponseDTO.setFirstName(Objects.requireNonNull(customer.getFirstName()));
-    CustomerResponseDTO.setLastName(Objects.requireNonNull(customer.getLastName()));
-    CustomerResponseDTO.setDocument(Objects.requireNonNull(customer.getDocument()));
-    CustomerResponseDTO.setMobile(Objects.requireNonNull(customer.getMobile()));
-    CustomerResponseDTO.setEmail(Objects.requireNonNull(customer.getEmail()));
-    CustomerResponseDTO.setTotalDebtValue(Objects.requireNonNull(customer.getTotalDebtValue()));
-    CustomerResponseDTO.setDebitStartDate(Objects.requireNonNull(customer.getDebitStartDate()));
-    CustomerResponseDTO.setDescription(customer.getDescription());
-    CustomerResponseDTO.setCustomerAddressResponseDTO(
+    customerResponseDTO.setFirstName(Objects.requireNonNull(customer.getFirstName()));
+    customerResponseDTO.setLastName(Objects.requireNonNull(customer.getLastName()));
+    customerResponseDTO.setDocument(Objects.requireNonNull(customer.getDocument()));
+    customerResponseDTO.setMobile(Objects.requireNonNull(customer.getMobile()));
+    customerResponseDTO.setEmail(Objects.requireNonNull(customer.getEmail()));
+    customerResponseDTO.setTotalDebtValue(Objects.requireNonNull(customer.getTotalDebtValue()));
+    customerResponseDTO.setDebitStartDate(Objects.requireNonNull(customer.getDebitStartDate()));
+    customerResponseDTO.setDescription(customer.getDescription());
+    customerResponseDTO.setCustomerAddressResponseDTO(
         Objects.requireNonNull(
             CustomerAddressResponseDTO.convertFromEntity(customer.getCustomerAddress())));
 
-    return CustomerResponseDTO;
+    return customerResponseDTO;
   }
 
 }
