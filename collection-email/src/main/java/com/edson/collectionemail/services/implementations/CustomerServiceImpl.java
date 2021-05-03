@@ -17,7 +17,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
-  @Value("${USER_API_URL:http://localhost:8080}")
+  @Value("${CUSTOMER_API_URL:http://localhost:8080}")
   private String customerApiURL;
 
   @Override
