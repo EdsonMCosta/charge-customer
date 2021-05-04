@@ -10,7 +10,7 @@ spring:
       connectionTimeout: 20000
       maximumPoolsize: 5
 
-  jpa:s
+  jpa:
     properties:
       hibernate:
         format_sql: true
