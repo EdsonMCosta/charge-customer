@@ -9,6 +9,7 @@ import com.edson.collectionemail.controllers.dtos.EmailResultDTO;
 import com.edson.collectionemail.controllers.dtos.EmailSenderDTO;
 import com.edson.collectionemail.dataproviders.models.Email;
 import com.edson.collectionemail.dataproviders.models.EmailConfirmation;
+import com.edson.collectionemail.dataproviders.repositories.EmailConfirmationRepository;
 import com.edson.collectionemail.services.CustomerService;
 import com.edson.collectionemail.services.EmailSenderService;
 import com.edson.collectionemail.usecase.implementations.PrepareBodyMailUseCase;
@@ -25,6 +26,9 @@ import org.springframework.stereotype.Service;
  **/
 @Service
 public class EmailSenderServiceImpl implements EmailSenderService {
+
+  @Autowired
+  private EmailConfirmationRepository emailConfirmationRepository;
 
   @Autowired
   private PrepareBodyMailUseCase prepareBodyMailUseCase;
@@ -55,11 +59,15 @@ public class EmailSenderServiceImpl implements EmailSenderService {
       emailConfirmation.setEmail(Email.convertFromDTO(emailDTO));
       emailConfirmation.setWasSent(Boolean.TRUE);
 
+      emailConfirmationRepository.save(emailConfirmation);
+
       return EmailResultDTO.of(Boolean.TRUE, "Success sent");
     } catch (RuntimeException e) {
       final EmailConfirmation emailConfirmation = new EmailConfirmation();
       emailConfirmation.setEmail(Email.convertFromDTO(emailDTO));
       emailConfirmation.setWasSent(Boolean.FALSE);
+
+      emailConfirmationRepository.save(emailConfirmation);
 
       return EmailResultDTO.of(Boolean.FALSE, e.getMessage());
     }

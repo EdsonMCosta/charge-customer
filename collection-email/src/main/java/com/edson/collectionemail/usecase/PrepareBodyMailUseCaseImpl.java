@@ -3,6 +3,7 @@ package com.edson.collectionemail.usecase;
 import com.edson.collectionemail.controllers.dtos.EmailDTO;
 import com.edson.collectionemail.services.EmailService;
 import com.edson.collectionemail.usecase.implementations.PrepareBodyMailUseCase;
+import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +31,7 @@ public class PrepareBodyMailUseCaseImpl implements PrepareBodyMailUseCase {
     String fifthPart = "favor entrar em contato com o número 0800-00-001. "
         + "Obrigado.";
 
-    return String.valueOf(new String[]{firstPart, secondPart, thirdPart, fourthPart, fifthPart});
+    return Arrays.toString(new String[]{firstPart, secondPart, thirdPart, fourthPart, fifthPart});
   }
 
 }

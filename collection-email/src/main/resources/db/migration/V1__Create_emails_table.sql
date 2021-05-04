@@ -12,7 +12,7 @@ create table collection_emails_db.emails(
 );
 
 create table collection_emails_db.emails_confirmation(
-  confirmation_id bigint primary key,
+  confirmation_id bigint primary key AUTO_INCREMENT,
   email_id bigint REFERENCES collection_emails_db.emails(email_id),
   was_sent bit(1) NOT NULL
 );

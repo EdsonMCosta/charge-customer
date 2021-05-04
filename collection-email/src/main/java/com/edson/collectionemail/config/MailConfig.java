@@ -23,11 +23,11 @@ public class MailConfig {
     JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
     mailSender.setDefaultEncoding("UTF-8");
 
-    mailSender.setHost("smtp.gmail.com"); //An example of setting email host
-    mailSender.setPort(587); //An example of setting port
+    mailSender.setHost("smtp.gmail.com");
+    mailSender.setPort(587);
 
-    mailSender.setUsername("111");//An example of setting username
-    mailSender.setPassword("111");//An example of setting password
+    mailSender.setUsername("teste.renegocicao@gmail.com");
+    mailSender.setPassword("testerenegociacao1!");
 
     Properties props = mailSender.getJavaMailProperties();
     props.put("mail.transport.protocol", "smtp");
