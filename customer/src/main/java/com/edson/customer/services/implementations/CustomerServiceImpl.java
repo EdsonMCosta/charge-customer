@@ -7,6 +7,7 @@ import com.edson.customer.dataproviders.models.CustomerAddress;
 import com.edson.customer.dataproviders.repositories.CustomerRepository;
 import com.edson.customer.services.CustomerService;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +66,7 @@ public class CustomerServiceImpl implements CustomerService {
   @Transactional(rollbackOn = Exception.class)
   public void saveCustomer(final CustomerRequestDTO customerRequestDTO) {
     final Customer customer = Customer.convertFromRequest(customerRequestDTO);
+    customer.setKey(UUID.randomUUID().toString());
 
     customerRepository.save(customer);
   }

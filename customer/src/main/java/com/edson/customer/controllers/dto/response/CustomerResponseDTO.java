@@ -20,6 +20,8 @@ public class CustomerResponseDTO implements Serializable {
 
   private String lastName;
 
+  private String key;
+
   private String mobile;
 
   private String document;
@@ -39,6 +41,7 @@ public class CustomerResponseDTO implements Serializable {
 
     customerResponseDTO.setFirstName(Objects.requireNonNull(customer.getFirstName()));
     customerResponseDTO.setLastName(Objects.requireNonNull(customer.getLastName()));
+    customerResponseDTO.setKey(Objects.requireNonNull(customer.getKey()));
     customerResponseDTO.setDocument(Objects.requireNonNull(customer.getDocument()));
     customerResponseDTO.setMobile(Objects.requireNonNull(customer.getMobile()));
     customerResponseDTO.setEmail(Objects.requireNonNull(customer.getEmail()));

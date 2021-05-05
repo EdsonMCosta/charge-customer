@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  * Customer
@@ -31,6 +32,9 @@ public class Customer {
   @Column(name = "customer_id")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long customerId;
+
+  @Column(name = "customer_key", nullable = false)
+  private String key;
 
   @Column(name = "first_name", nullable = false)
   private String firstName;

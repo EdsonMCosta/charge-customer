@@ -13,6 +13,7 @@ create table customers_db.customers_address(
 
 create table customers_db.customers(
   customer_id bigint primary key AUTO_INCREMENT,
+  customer_key varchar(100) NOT NULL,
   first_name varchar(100) NOT NULL,
   last_name varchar(100) NOT NULL,
   document varchar(100) NOT NULL,
