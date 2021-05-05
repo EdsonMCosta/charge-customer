@@ -1,13 +1,12 @@
 package com.edson.collectionemail.services.implementations;
 
+import com.edson.collectionemail.controllers.dtos.CollectionEmailDTO;
 import com.edson.collectionemail.controllers.dtos.EmailDTO;
-import com.edson.collectionemail.controllers.dtos.EmailSenderDTO;
 import com.edson.collectionemail.dataproviders.models.Email;
 import com.edson.collectionemail.dataproviders.repositories.EmailRepository;
 import com.edson.collectionemail.services.EmailSenderService;
 import com.edson.collectionemail.services.EmailService;
 import com.edson.collectionemail.usecase.implementations.PrepareBodyMailUseCase;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
@@ -57,8 +56,6 @@ public class EmailServiceImpl implements EmailService {
     final Email email = Email.convertFromDTO(emailDTO);
 
     emailRepository.save(email);
-
-    this.sendEmailToCustomer(emailDTO);
   }
 
   @Override
@@ -71,13 +68,9 @@ public class EmailServiceImpl implements EmailService {
   }
 
   @Override
-  public void sendEmailToCustomer(EmailDTO emailDTO) {
-    final EmailSenderDTO emailSenderDTO = new EmailSenderDTO(
-        Collections.singletonList(emailDTO.getEmailCustomer()),
-        prepareBodyMailUseCase.prepareBodyMessage(
-            emailDTO.getDocumentCustomer()));
-
-    emailSenderService.sendEmailToCustomer(emailSenderDTO, emailDTO);
+  public void sendEmailToCustomerAndSave(CollectionEmailDTO collectionEmailDTO) {
+    emailSenderService
+        .sendEmailToCustomerAndSave(collectionEmailDTO);
   }
 
 

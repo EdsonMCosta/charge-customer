@@ -1,5 +1,6 @@
 package com.edson.collectionemail.controllers.entrypoints;
 
+import com.edson.collectionemail.controllers.dtos.CollectionEmailDTO;
 import com.edson.collectionemail.controllers.dtos.EmailDTO;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,8 @@ public interface EmailController {
   ResponseEntity<EmailDTO> findByDocumentCustomer(String documentCustomer);
 
   ResponseEntity<Void> createEmail(EmailDTO emailDTO);
+
+  ResponseEntity<Void> saveAndSend (CollectionEmailDTO collectionEmailDTO);
 
   ResponseEntity<Void> deleteEmail(Integer id);
 

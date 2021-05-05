@@ -1,5 +1,6 @@
 package com.edson.collectionemail.services;
 
+import com.edson.collectionemail.controllers.dtos.CollectionEmailDTO;
 import com.edson.collectionemail.controllers.dtos.EmailDTO;
 import java.util.List;
 
@@ -19,6 +20,6 @@ public interface EmailService {
 
   void deleteEmail(Integer id);
 
-  void sendEmailToCustomer(EmailDTO emailDTO);
+  void sendEmailToCustomerAndSave(CollectionEmailDTO collectionEmailDTO);
 
 }

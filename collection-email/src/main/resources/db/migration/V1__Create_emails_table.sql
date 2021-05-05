@@ -3,6 +3,7 @@ create schema if not exists collection_emails_db;
 create table collection_emails_db.emails(
   email_id bigint primary key AUTO_INCREMENT,
   email_customer varchar(100) NOT NULL,
+  customer_key varchar(100) NOT NULL,
   first_name_customer varchar(100) NOT NULL,
   last_name_customer varchar(100) NOT NULL,
   document_customer varchar(100) NOT NULL,

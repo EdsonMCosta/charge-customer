@@ -3,6 +3,7 @@ package com.edson.collectionemail.controllers.entrypoints.implementations;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+import com.edson.collectionemail.controllers.dtos.CollectionEmailDTO;
 import com.edson.collectionemail.controllers.dtos.EmailDTO;
 import com.edson.collectionemail.controllers.entrypoints.EmailController;
 import com.edson.collectionemail.services.EmailService;
@@ -54,6 +55,17 @@ public class EmailControllerImpl implements EmailController {
   public ResponseEntity<Void> createEmail(@RequestBody @Valid EmailDTO emailDTO) {
     emailService.saveEmail(emailDTO);
     final String emailCustomer = emailDTO.getEmailCustomer();
+    return ResponseEntity
+        .created(URI.create(emailCustomer))
+        .build();
+  }
+
+  @Override
+  @PostMapping(value = "/send", consumes = APPLICATION_JSON_VALUE)
+  public ResponseEntity<Void> saveAndSend(
+      @RequestBody @Valid CollectionEmailDTO collectionEmailDTO) {
+    emailService.sendEmailToCustomerAndSave(collectionEmailDTO);
+    final String emailCustomer = collectionEmailDTO.getEmailCustomer();
     return ResponseEntity
         .created(URI.create(emailCustomer))
         .build();

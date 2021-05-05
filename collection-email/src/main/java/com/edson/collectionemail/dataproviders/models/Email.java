@@ -1,5 +1,6 @@
 package com.edson.collectionemail.dataproviders.models;
 
+import com.edson.collectionemail.controllers.dtos.CustomerResponseDTO;
 import com.edson.collectionemail.controllers.dtos.EmailDTO;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -26,6 +27,9 @@ public class Email {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer emailId;
 
+  @Column(name = "customer_key", nullable = false)
+  private String key;
+
   @Column(name = "email_customer", nullable = false)
   private String emailCustomer;
 
@@ -50,10 +54,11 @@ public class Email {
   public Email() {
   }
 
-  public Email(Integer emailId, String emailCustomer, String firstNameCustomer,
+  public Email(Integer emailId, String key, String emailCustomer, String firstNameCustomer,
       String lastNameCustomer, String documentCustomer, BigDecimal totalDebitValue,
       LocalDate debitStartDate, String description) {
     this.emailId = emailId;
+    this.key = key;
     this.emailCustomer = emailCustomer;
     this.firstNameCustomer = firstNameCustomer;
     this.lastNameCustomer = lastNameCustomer;
@@ -69,6 +74,14 @@ public class Email {
 
   public void setEmailId(Integer emailId) {
     this.emailId = emailId;
+  }
+
+  public String getKey() {
+    return key;
+  }
+
+  public void setKey(String key) {
+    this.key = key;
   }
 
   public String getEmailCustomer() {
@@ -136,17 +149,17 @@ public class Email {
       return false;
     }
     Email email = (Email) o;
-    return emailId.equals(email.emailId) && emailCustomer.equals(email.emailCustomer)
-        && firstNameCustomer.equals(email.firstNameCustomer) && lastNameCustomer
-        .equals(email.lastNameCustomer) && documentCustomer.equals(email.documentCustomer)
-        && totalDebitValue.equals(email.totalDebitValue) && debitStartDate
-        .equals(email.debitStartDate) && description.equals(email.description);
+    return Objects.equals(emailId, email.emailId) && key.equals(email.key) && emailCustomer
+        .equals(email.emailCustomer) && firstNameCustomer.equals(email.firstNameCustomer)
+        && lastNameCustomer.equals(email.lastNameCustomer) && documentCustomer
+        .equals(email.documentCustomer) && totalDebitValue.equals(email.totalDebitValue)
+        && debitStartDate.equals(email.debitStartDate) && description.equals(email.description);
   }
 
   @Override
   public int hashCode() {
     return Objects
-        .hash(emailId, emailCustomer, firstNameCustomer, lastNameCustomer, documentCustomer,
+        .hash(emailId, key, emailCustomer, firstNameCustomer, lastNameCustomer, documentCustomer,
             totalDebitValue, debitStartDate, description);
   }
 
@@ -154,6 +167,7 @@ public class Email {
   public String toString() {
     return "Email{" +
         "emailId=" + emailId +
+        ", key='" + key + '\'' +
         ", emailCustomer='" + emailCustomer + '\'' +
         ", firstNameCustomer='" + firstNameCustomer + '\'' +
         ", lastNameCustomer='" + lastNameCustomer + '\'' +
@@ -168,12 +182,28 @@ public class Email {
     final Email email = new Email();
 
     email.setEmailCustomer(emailDTO.getEmailCustomer());
+    email.setKey(emailDTO.getKey());
     email.setFirstNameCustomer(emailDTO.getFirstNameCustomer());
     email.setLastNameCustomer(emailDTO.getLastNameCustomer());
     email.setDocumentCustomer(emailDTO.getDocumentCustomer());
     email.setTotalDebitValue(emailDTO.getTotalDebitValue());
     email.setDebitStartDate(emailDTO.getDebitStartDate());
     email.setDescription(emailDTO.getDescription());
+
+    return email;
+  }
+
+  public static Email convertFromCustomerDTO(CustomerResponseDTO customerResponseDTO) {
+    final Email email = new Email();
+
+    email.setKey(customerResponseDTO.getKey());
+    email.setEmailCustomer(customerResponseDTO.getEmail());
+    email.setFirstNameCustomer(customerResponseDTO.getFirstName());
+    email.setLastNameCustomer(customerResponseDTO.getLastName());
+    email.setDocumentCustomer(customerResponseDTO.getDocument());
+    email.setTotalDebitValue(customerResponseDTO.getTotalDebtValue());
+    email.setDebitStartDate(customerResponseDTO.getDebitStartDate());
+    email.setDescription(customerResponseDTO.getDescription());
 
     return email;
   }

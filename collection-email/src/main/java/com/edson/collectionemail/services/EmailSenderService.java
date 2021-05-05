@@ -1,6 +1,6 @@
 package com.edson.collectionemail.services;
 
-import com.edson.collectionemail.controllers.dtos.EmailDTO;
+import com.edson.collectionemail.controllers.dtos.CollectionEmailDTO;
 import com.edson.collectionemail.controllers.dtos.EmailResultDTO;
 import com.edson.collectionemail.controllers.dtos.EmailSenderDTO;
 
@@ -13,5 +13,5 @@ import com.edson.collectionemail.controllers.dtos.EmailSenderDTO;
 @FunctionalInterface
 public interface EmailSenderService {
 
-  EmailResultDTO sendEmailToCustomer(EmailSenderDTO emailSenderDTO, EmailDTO emailDTO);
+  EmailResultDTO sendEmailToCustomerAndSave(CollectionEmailDTO collectionEmailDTO);
 }

@@ -19,6 +19,9 @@ public class EmailDTO implements Serializable {
   private String emailCustomer;
 
   @NotBlank
+  private String key;
+
+  @NotBlank
   private String firstNameCustomer;
 
   @NotBlank
@@ -42,6 +45,14 @@ public class EmailDTO implements Serializable {
 
   public void setEmailCustomer(String emailCustomer) {
     this.emailCustomer = emailCustomer;
+  }
+
+  public String getKey() {
+    return key;
+  }
+
+  public void setKey(String key) {
+    this.key = key;
   }
 
   public String getFirstNameCustomer() {
@@ -96,6 +107,7 @@ public class EmailDTO implements Serializable {
     final EmailDTO emailDTO = new EmailDTO();
 
     emailDTO.setEmailCustomer(email.getEmailCustomer());
+    emailDTO.setKey(email.getKey());
     emailDTO.setFirstNameCustomer(email.getFirstNameCustomer());
     emailDTO.setLastNameCustomer(email.getLastNameCustomer());
     emailDTO.setDocumentCustomer(email.getDocumentCustomer());
