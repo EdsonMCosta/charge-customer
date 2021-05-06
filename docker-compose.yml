@@ -1,36 +1,56 @@
-version: "3.5"
+version: '3.3'
 
 services:
 
-  db:
+  db-customer:
     image: mysql:5.7
-    ports:
-      - "3306:3306"
+    restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root1234
-      MYSQL_DATABASE: charge_customer_db
-      MYSQL_USER: mysql
-      MYSQL_PASSWORD: mysql
+      - MYSQL_DATABASE=customers_db
+      - MYSQL_USER=mysql
+      - MYSQL_PASSWORD=mysql
+      - MYSQL_ROOT_PASSWORD=root1234
+    ports:
+      - 3306:3306
+
+  db-collection-email:
+    image: mysql:5.7
+    restart: always
+    environment:
+      - MYSQL_DATABASE=collection_emails_db
+      - MYSQL_USER=mysql
+      - MYSQL_PASSWORD=mysql
+      - MYSQL_ROOT_PASSWORD=root1234
+    ports:
+      - 3307:3306
 
   customer:
-    image: renegotiation/customer
-    ports:
-      - "8080:8080"
+    build:
+      context: ./customer
+      dockerfile: Dockerfile
+    restart: always
     environment:
-      MYSQL_URL: jdbc:mysql://db:3306/charge_customer_db
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root1234
+      - MYSQL_URL=jdbc:mysql://db-customer:3306/customers_db
+      - MYSQL_USER=mysql
+      - MYSQL_PASSWORD=mysql
     depends_on:
-      - db
+      - db-customer
+      - db-collection-email
+    ports:
+      - 8080:8080
 
-  colletion-email:
-    image: renegotiation/collection-email
-    ports:
-      - "8081:8081"
-    environment:
-      MYSQL_URL: jdbc:mysql://db:3306/charge_customer_db
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root1234
-      CUSTOMER_API_URL: customer:8080
+  collection-email:
+    build:
+      context: ./collection-email
+      dockerfile: Dockerfile
+    restart: always
     depends_on:
-      - db
+      - db-customer
+      - db-collection-email
+    ports:
+      - 8081:8081
+    environment:
+      - MYSQL_URL=jdbc:mysql://db-collection-email:3306/collection_emails_db
+      - MYSQL_USER=mysql
+      - MYSQL_PASSWORD=mysql
+      - CUSTOMER_API_URL=http://customer:8080/api
